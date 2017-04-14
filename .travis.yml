@@ -1,0 +1,13 @@
+sudo: required
+
+language: php
+
+services:
+  - docker
+
+before_install:
+  - docker build -t game .
+  - docker run -d -p 127.0.0.1:80:80 --name game game
+
+script:
+  - docker ps | grep -q game
