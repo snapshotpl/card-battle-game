@@ -1,0 +1,5 @@
+nbproject/
+coverage/
+composer.lock
+.idea
+vendor

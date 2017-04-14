@@ -1,0 +1,21 @@
+variables:
+  COMPOSER_CACHE_DIR: /tmp/composer-cache
+
+unit_tests:
+  stage: test
+  image: dev-docker-registry0.km.rst.com.pl/php-libraries/php71:latest
+  before_script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - php -v
+    - php -m
+    - composer update --no-progress --no-suggest --no-interaction --prefer-dist --prefer-stable
+  script:
+    - composer unit_tests_coverage
+    - composer functional_tests
+  artifacts:
+    paths:
+    - coverage/html/
+    - coverage/clover.xml

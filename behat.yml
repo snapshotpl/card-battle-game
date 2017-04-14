@@ -1,0 +1,10 @@
+default:
+  suites:
+    domain:
+      paths:
+        - %paths.base%/tests/functional/features/
+      contexts:
+        - RstGroup\PhpStudyGroup\CardBattleGame\Tests\Functional\Domain\GameCreatingContext
+        - RstGroup\PhpStudyGroup\CardBattleGame\Tests\Functional\Domain\CardsDealingContext
+        - RstGroup\PhpStudyGroup\CardBattleGame\Tests\Functional\Domain\CardsPlayingContext
+        - RstGroup\PhpStudyGroup\CardBattleGame\Tests\Functional\Domain\EventSourcedContext
