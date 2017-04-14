@@ -11,3 +11,4 @@ before_install:
 
 script:
   - docker ps | grep -q game
+  - composer tests
